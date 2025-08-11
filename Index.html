@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>MortgageDoor – Compare Your Mortgage Rate Anonymously</title>
+  <meta name="description" content="Share your mortgage rate anonymously and compare it with others in your state. No commercial offers – just data." />
+  <meta property="og:title" content="MortgageDoor – Compare Your Mortgage Rate Anonymously" />
+  <meta property="og:description" content="Share your mortgage rate anonymously and compare it with others in your state." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="/og-image.png" />
+  <meta name="theme-color" content="#0ea5e9" />
+  <link rel="icon" href="/favicon.ico" />
+  <style>
+    :root{--bg:#0b1220;--card:#0f172a;--text:#e5e7eb;--muted:#94a3b8;--accent:#38bdf8;--ring:#1f2937}
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,'Helvetica Neue',Arial,'Noto Sans','Apple Color Emoji','Segoe UI Emoji','Segoe UI Symbol';background:var(--bg);color:var(--text);}
+    .wrap{max-width:980px;margin:0 auto;padding:32px}
+    .header{display:flex;gap:16px;align-items:center;justify-content:space-between;margin-bottom:20px}
+    .brand{display:flex;gap:12px;align-items:center}
+    .logo{width:40px;height:40px;border-radius:12px;background:linear-gradient(135deg,#06b6d4,#3b82f6);box-shadow:0 10px 25px rgba(56,189,248,.25)}
+    h1{font-size:clamp(20px,3.2vw,32px);margin:0}
+    .tag{font-size:14px;color:var(--muted)}
+    .card{background:linear-gradient(180deg,rgba(148,163,184,.08),rgba(148,163,184,.03));border:1px solid rgba(148,163,184,.25);backdrop-filter:saturate(140%) blur(8px);border-radius:16px;box-shadow:0 10px 40px rgba(0,0,0,.25);overflow:hidden}
+    .content{padding:22px}
+    .title{font-weight:650;font-size:20px;margin:0 0 6px}
+    .subtitle{color:var(--muted);font-size:15px;margin:0 0 12px}
+    .iframe-wrap{position:relative;width:100%;padding-top:62%; /* 16:10-ish responsive frame */ background:#0a0f1a;border-radius:12px;overflow:hidden;border:1px solid rgba(148,163,184,.2)}
+    iframe{position:absolute;inset:0;width:100%;height:100%;border:0;background:#0a0f1a}
+    .notice{display:flex;gap:10px;align-items:flex-start;background:rgba(56,189,248,.08);border:1px dashed rgba(56,189,248,.35);padding:12px 14px;border-radius:10px;color:#c8e9fb;margin-top:12px}
+    .notice strong{color:#e6f6ff}
+    .footer{display:flex;gap:10px;flex-wrap:wrap;align-items:center;justify-content:space-between;margin-top:18px;color:var(--muted);font-size:13px}
+    .btn{appearance:none;border:1px solid rgba(148,163,184,.4);background:transparent;color:var(--text);padding:8px 12px;border-radius:10px;cursor:pointer}
+    .btn:hover{border-color:#60a5fa;color:#fff}
+    .links{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+    code{background:rgba(148,163,184,.15);padding:2px 6px;border-radius:6px}
+    @media (max-width:640px){.wrap{padding:18px}.iframe-wrap{padding-top:110%}}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header class="header">
+      <div class="brand">
+        <div class="logo" aria-hidden="true"></div>
+        <div>
+          <h1>MortgageDoor Beta</h1>
+          <div class="tag">Compare your mortgage rate anonymously – no commercial offers, just data.</div>
+        </div>
+      </div>
+      <button class="btn" id="shareBtn" title="Copy link to share">Share</button>
+    </header>
+
+    <div class="card">
+      <div class="content">
+        <p class="title">Anonymously share your rate</p>
+        <p class="subtitle">Submit your information and instantly help build a transparent, crowdsourced benchmark for your state.</p>
+
+        <!--
+          HOW TO USE
+          1) Replace FORM_EMBED_URL below with your Google Form / Typeform / Tally embed URL.
+             - Google Forms: use the "Send > <> Embed HTML" option and copy the src.
+             - Typeform: use the "Share > Embed in a web page > Standard" src URL.
+             - Tally.so: use the "Share > Embed" iframe src.
+          2) (Optional) Append query params via the page URL to prefill, e.g. ?state=TX
+          3) Deploy this file to your Render static site.
+        -->
+
+        <div class="iframe-wrap">
+          <iframe id="formFrame" title="MortgageDoor Form" allowtransparency="true" loading="lazy"
+            src="FORM_EMBED_URL"></iframe>
+        </div>
+
+        <div class="notice" role="note">
+          <div style="font-weight:700">ℹ️</div>
+          <div>
+            <strong>Privacy-first:</strong> No personal identifiers are collected here. If your embedded form collects emails, it should explicitly state why (e.g., beta access). You can swap the form later without changing this page URL.
+          </div>
+        </div>
+
+        <div class="footer">
+          <div>Problems viewing the form? <a href="#" id="openDirect" rel="noopener">Open it directly</a>.</div>
+          <div class="links">
+            <span>Questions? Email <code>team@yourdomain.com</code></span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <p style="margin-top:14px;color:var(--muted);font-size:12px">© <span id="year"></span> MortgageDoor. All rights reserved.</p>
+  </div>
+
+  <script>
+    // 1) Replace this with your actual form embed URL
+    const FORM_EMBED_URL = 'https://docs.google.com/forms/d/e/1FAIpQLSdhQwN4FL0oQiLtbQEgETL6idV7Da9I2DS5DRA1hzyidgtvrg/viewform?usp=sharing&ouid=107578659659233028701';
+    // Examples:
+    // const FORM_EMBED_URL = 'https://mortgagedoor.typeform.com/to/abcd1234';
+    // const FORM_EMBED_URL = 'https://tally.so/r/wXYZ12?transparentBackground=1&hideTitle=1';
+
+    // 2) Optional: Map URL query params to form prefill params if your provider supports it.
+    // For Google Forms, prefill uses entry.<ID>=value (per-question). For Typeform/Tally, use hidden fields.
+    const url = new URL(window.location.href);
+    const params = new URLSearchParams(url.search);
+
+    // Example mapping for Tally hidden fields: ?state=TX&source=reddit
+    // For Typeform, add ?state=TX&source=reddit to your embed URL and enable Hidden Fields in Typeform.
+
+    const base = new URL(FORM_EMBED_URL, window.location.origin);
+    if ([...params.keys()].length) {
+      const formUrl = new URL(base.href);
+      // Merge existing search params on the embed URL with page params
+      const existing = new URLSearchParams(formUrl.search);
+      params.forEach((v,k)=>existing.set(k,v));
+      formUrl.search = existing.toString();
+      document.getElementById('formFrame').src = formUrl.toString();
+      document.getElementById('openDirect').setAttribute('href', formUrl.toString());
+    } else {
+      document.getElementById('formFrame').src = base.toString();
+      document.getElementById('openDirect').setAttribute('href', base.toString());
+    }
+
+    // Share button copies current page URL
+    document.getElementById('shareBtn').addEventListener('click', async () => {
+      try {
+        await navigator.clipboard.writeText(window.location.href);
+        const btn = document.getElementById('shareBtn');
+        const prev = btn.textContent; btn.textContent = 'Copied!';
+        setTimeout(()=>btn.textContent = prev, 1400);
+      } catch (e) {
+        window.alert('Link copied: ' + window.location.href);
+      }
+    });
+
+    // Year
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+
+  <!-- Optional: privacy-friendly analytics (uncomment and set your domain)
+  <script defer data-domain="yourdomain.com" src="https://plausible.io/js/script.js"></script>
+  -->
+</body>
+</html>
