@@ -11,16 +11,16 @@
   <meta property="og:image" content="/og-image.png" />
   <meta name="theme-color" content="#0ea5e9" />
   <link rel="icon" href="/favicon.ico" />
-  
+
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-NYFB7J7HL4"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-    gtag('config', 'G-NYFB7J7HL4');
+    gtag('config', 'G-NYFB7J7HL4'); // GA4 measurement ID
   </script>
-  
+
   <style>
     :root{--bg:#0b1220;--card:#0f172a;--text:#e5e7eb;--muted:#94a3b8;--accent:#38bdf8;--ring:#1f2937}
     *{box-sizing:border-box}
@@ -101,7 +101,7 @@
   </div>
 
   <script>
-    const FORM_EMBED_URL = 'https://docs.google.com/forms/d/e/1FAIpQLSdhQwN4FL0oQiLtbQEgETL6idV7Da9I2DS5DRA1hzyidgtvrg/viewform?usp=sharing&ouid=107578659659233028701';
+    const FORM_EMBED_URL = 'https://docs.google.com/forms/d/e/1FAIpQLSdhQwN4FL0oQiLtbQEgETL6idV7Da9I2DS5DRA1hzyidgtvrg/viewform?embedded=true';
     const url = new URL(window.location.href);
     const params = new URLSearchParams(url.search);
     const base = new URL(FORM_EMBED_URL, window.location.origin);
