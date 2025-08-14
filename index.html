@@ -11,6 +11,16 @@
   <meta property="og:image" content="/og-image.png" />
   <meta name="theme-color" content="#0ea5e9" />
   <link rel="icon" href="/favicon.ico" />
+  
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-NYFB7J7HL4"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-NYFB7J7HL4');
+  </script>
+  
   <style>
     :root{--bg:#0b1220;--card:#0f172a;--text:#e5e7eb;--muted:#94a3b8;--accent:#38bdf8;--ring:#1f2937}
     *{box-sizing:border-box}
@@ -56,7 +66,6 @@
       </div>
       <div class="header-actions">
         <button class="btn" id="shareBtn" title="Copy link to share">Share</button>
-        <!-- ✅ Logo moved to far right -->
         <img src="mortgagedoor-logo.png" alt="MortgageDoor Logo" />
       </div>
     </header>
